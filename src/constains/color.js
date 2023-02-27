@@ -5,9 +5,9 @@ export default {
     black: '#000000',
     black_2: '#2d2d2d',
     gray: '#c9c9c9', 
-    green: '#5afb5b',
-    green_1: '#40bc40',
-    green_2: '#379b37',
+    green: '#00FFBB',
+    green_1: '#00BC8A', // 40BC40
+    green_2: '#009b72', 
     red: '#fb5b5a',
     blue: '#00abf4',
     blue_1: '#003f5c',
@@ -15,4 +15,5 @@ export default {
     blue_3: '#4286F5',
     blue_4: '#21477c',
     text_placeholder: '#b7b7b7',
+
 }

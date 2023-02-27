@@ -13,6 +13,7 @@ Trong khi người chơi đang trốn thoát, quái vật sẽ đuổi theo mìn
 
 ### Run:
 ```sh
+yarn install   # npm install
 npx react-native run-android
 ```
 

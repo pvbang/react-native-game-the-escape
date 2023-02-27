@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StatusBar, ScrollView } from 'react-native';
 import axios from 'axios';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import styles from './styles';
 import color from '../../constains/color';
 import { GoogleSigninButton, GoogleSignin } from '@react-native-google-signin/google-signin';
@@ -30,17 +28,18 @@ const RegisterScreen = ({ navigation }) => {
   };
 
   const handleRegister = async () => {
-    if (!username.length === 0 && !password.length === 0 && !password2.length === 0) {
+    if (!(username.length === 0) && !(password.length === 0) && !(password2.length === 0)) {
       if (password == password2) {
         try {
           const response = await axios.post('http://localhost:3000/users', { username, password });
           console.log(response.data);
           if (response.data) {
+            setError('Đăng ký thành công.');
             navigation.goBack();
           }
         } catch (error) {
           console.log(error);
-          setError('Tên đăng nhập hoặc mật khẩu không đúng.');
+          setError('Lỗi kết nối với máy chủ.');
         }
       } else {
         setError('Mật khẩu xác nhận không giống với mật khẩu trước đó.');

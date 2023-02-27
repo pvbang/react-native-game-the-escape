@@ -4,8 +4,9 @@ import axios from 'axios';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import styles from './styles';
-import RegisterScreen from '../register/register';
 import color from '../../constains/color';
+import RegisterScreen from '../register/register';
+import MainScreen from '../home/home';
 import { GoogleSigninButton, GoogleSignin } from '@react-native-google-signin/google-signin';
 
 GoogleSignin.configure({
@@ -30,18 +31,18 @@ const LoginScreen = ({ navigation }) => {
   };
 
   const handleLogin = async () => {
-    if (!username.length === 0 && !password.length === 0) {
+    if (!(username.length === 0) && !(password.length === 0)) {
       try {
         const response = await axios.post('http://localhost:3000/login', { username, password });
         if (Array.isArray(response.data) && response.data.length === 0) {
           setError('Tên đăng nhập hoặc mật khẩu không đúng.');
         } else {
           console.log(response.data);
-          // navigation.navigate('Home');
+          navigation.navigate('Main');
         }
       } catch (error) {
         console.log(error);
-        setError(error);
+        setError('Lỗi kết nối với máy chủ');
       }
     } else {
       setError('Hãy nhập đầy đủ tên đăng nhập và mật khẩu.');
@@ -108,6 +109,7 @@ function LoginScreenStack() {
       <LoginStack.Navigator initialRouteName="Login">
         <LoginStack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
         <LoginStack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }} />
+        <LoginStack.Screen name="Main" component={MainScreen} options={{ headerShown: false }} />
       </LoginStack.Navigator>
     </NavigationContainer>
   );
