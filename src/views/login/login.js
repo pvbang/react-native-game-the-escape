@@ -47,7 +47,7 @@ const LoginScreen = ({ navigation }) => {
     } else {
       setError('Hãy nhập đầy đủ tên đăng nhập và mật khẩu.');
     }
-
+    // navigation.navigate('Main');
   };
 
   const handleShowPassword = () => {
